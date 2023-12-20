@@ -15,7 +15,6 @@ class Amigo {
 
         document.addEventListener("dragend", (event) => {
             event.target.classList.remove("dragging")
-            this.verificarFinal()
         })
 
         caixasAmigos.forEach((amigo) => {
@@ -58,12 +57,24 @@ class Amigo {
                 if(caixa.classList[1] == caixa.children[0].classList[1]){
                     caixa.style.backgroundColor = 'green'
                     caixa.children[0].setAttribute('draggable', 'false')
+                    caixa.classList.add('certa')
                     caixa.children[0].classList.add('certa')
                     console.log(caixa.children[0])
                 }
             })
 
-            console.log(caixas)
+        } else {
+            const caixas = caixaCaixas.querySelectorAll('.caixa_amigo')
+            caixas.forEach((caixa) => {
+                if (caixa.classList.contains('certa')){
+                    console.log('oi')
+                } else {
+                    caixa.style.backgroundColor = 'red'
+                    setTimeout(() => {
+                        caixa.style.backgroundColor = 'white'
+                    }, [1000])
+                }
+            })
         }
     }
 }
@@ -73,6 +84,11 @@ function resetGame() {
         window.location.reload()
     })
 }
+
+const botaoVerificar = document.querySelector('.verificar')
+botaoVerificar.addEventListener("click", () => {
+    Amigo.verificarFinal()
+})
 
 resetGame()
 Amigo.movimentarFruta()

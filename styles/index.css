@@ -156,3 +156,9 @@ body {
     top: 20px;
     cursor: pointer;
 }
+
+.verificar {
+    position: absolute;
+    bottom: 20px;
+    cursor: pointer;
+}
